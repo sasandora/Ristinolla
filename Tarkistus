@@ -1,0 +1,72 @@
+namespace Ristinolla
+{
+    public partial class Form1
+    {
+        
+        Tilastot tilastot;
+        public void Tarkistus()
+        /*Tarkistus suorittaa pelitilanteen tarkistamisen 
+        jokaisen vuoron päätteeksi */
+        {
+            
+            //Tarkistetaan vinorivit
+            int z = 0;
+            for (int y = 0; y < 3; y++)
+            {
+                linja += peli[z, y];
+                if (linja == "xxx" || linja == "ooo")
+                {
+                    voittajateksti.Text = "Voittaja";
+                    break;
+                }
+                z++;
+            }
+            linja = "";
+            z = 2;
+            for (int y = 0; y < 3; y++)
+            {
+                linja += peli[z, y];
+                if (linja == "xxx" || linja == "ooo")
+                {
+                    voittajateksti.Text = "Voittaja";
+                    break;
+                }
+                z--;
+            }
+            linja = "";
+            //Tarkistetaan vaakarivit
+            for (int x = 0; x < 3; x++)
+            {
+                for (int y = 0; y < 3; y++)
+                    linja += peli[y, x];
+                if (linja == "xxx" || linja == "ooo")
+                {
+                    voittajateksti.Text = "Voittaja";
+                    break;
+                }
+                linja = "";
+            }
+
+            //Tarkistetaan pystyrivit
+            for (int x = 0; x < 3; x++)
+            {
+                for (int y = 0; y < 3; y++)
+                    linja += peli[x, y];
+                if (linja == "xxx" || linja == "ooo")
+                {
+                    voittajateksti.Text = "Voittaja";
+                    break;
+                }
+                linja = "";
+            }
+            //Voiton jälkeen päivitetään tilastot Tilastot.cs:n kautta
+            if (linja == "xxx" || linja == "ooo")
+                tilastot.Laskuri(tilastot, nykpel);
+            linja = "";
+            //Päivitetään myös voitot peli-ikkunaan
+            naytto.Text = $"X: {tilastot.pelaaja1}\nO: {tilastot.pelaaja2}";
+        }
+
+
+    }
+}
