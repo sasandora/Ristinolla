@@ -1,0 +1,27 @@
+using System.IO;
+public struct Tilastot
+{
+    public int pelaaja1;
+    public int pelaaja2;
+
+    public Tilastot Laskuri(Tilastot h, Pelaaja nykpel)
+    {
+        if (nykpel == Pelaaja.x)
+        {
+            pelaaja1++;
+        }
+        else if (nykpel == Pelaaja.o)
+        {
+            pelaaja2++;
+        }
+        StreamWriter sw = new StreamWriter("c:\\temp\\testi.txt", true);
+        sw.WriteLine(pelaaja1);
+        sw.WriteLine(pelaaja2);
+        sw.Close();
+        return h;
+    }
+}
+public enum Pelaaja
+{
+    x, o
+}
