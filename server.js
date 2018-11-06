@@ -6,7 +6,7 @@ var path = require('path');
 var session = require('express-session'); // npm install express-session
 
 var app=express();
-
+//
 // npm install handlebars
 app.engine('html', cons.handlebars);
 app.set('view engine', 'html');
